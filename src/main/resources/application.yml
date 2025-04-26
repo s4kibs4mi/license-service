@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: 'license-server'
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  datasource:
+    username: root
+    password: password
+    url: "jdbc:postgresql://localhost:5433/license-service"
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+
+security:
+  jwt:
+    secret_key: "3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b"
+    expiration_time: "3600000"
+
+server:
+  port: 8082
+
+logging:
+  level:
+    root: info
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
