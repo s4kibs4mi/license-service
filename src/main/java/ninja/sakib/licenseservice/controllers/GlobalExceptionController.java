@@ -1,10 +1,8 @@
 package ninja.sakib.licenseservice.controllers;
 
-import ninja.sakib.licenseservice.exceptions.ResourceNotFoundException;
-import ninja.sakib.licenseservice.exceptions.UserCredentialsIncorrectException;
-import ninja.sakib.licenseservice.exceptions.UserNotAuthenticatedException;
-import ninja.sakib.licenseservice.exceptions.UserNotRegisteredException;
+import ninja.sakib.licenseservice.exceptions.*;
 import ninja.sakib.licenseservice.shared.dto.ApiFailureResp;
+import ninja.sakib.licenseservice.shared.dto.ApiSuccessResp;
 import ninja.sakib.licenseservice.shared.errorcodes.ErrorCode;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.MessageSourceResolvable;

@@ -8,7 +8,7 @@ spring:
   datasource:
     username: root
     password: password
-    url: "jdbc:postgresql://localhost:5432/license-service"
+    url: "jdbc:postgresql://postgres:5432/license-service"
 
   jpa:
     show-sql: false

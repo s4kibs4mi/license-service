@@ -12,6 +12,7 @@ import ninja.sakib.licenseservice.services.dto.UserDto;
 import ninja.sakib.licenseservice.services.dto.UserLoginParams;
 import ninja.sakib.licenseservice.services.dto.UserRegisterParams;
 import ninja.sakib.licenseservice.shared.security.SecurityService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -81,4 +82,9 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user).toDto();
     }
 
+    public boolean isLoggedUserAdmin() {
+        var loggedUser = securityService.getLoggedUser(SecurityContextHolder.getContext());
+        var user = findUserById(loggedUser.getUsername());
+        return user.getRole().equals(UserRole.Admin);
+    }
 }

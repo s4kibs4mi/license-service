@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ninja.sakib.licenseservice.services.dto.UserDto;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.Instant;
 
@@ -26,7 +25,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
 

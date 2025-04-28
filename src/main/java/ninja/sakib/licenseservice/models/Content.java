@@ -6,9 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ninja.sakib.licenseservice.services.dto.ContentDto;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.Instant;
+import java.util.List;
 
 @Builder(toBuilder = true)
 @Entity
@@ -22,9 +22,11 @@ public class Content {
     @Column(nullable = false, updatable = false)
     private String id;
     private String content;
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
+
+    @ManyToMany(mappedBy = "purchasedContents")
+    private List<Purchase> purchases;
 
     public ContentDto toDto() {
         return ContentDto

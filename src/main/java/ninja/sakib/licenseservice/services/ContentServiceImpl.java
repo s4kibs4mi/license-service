@@ -48,4 +48,12 @@ public class ContentServiceImpl implements ContentService {
                 .save(updateableContent)
                 .toDto();
     }
+
+    public Content findById(String contentId) {
+        Optional<Content> content = contentDao.findById(contentId);
+        if (content.isEmpty()) {
+            throw new ContentNotFoundException(contentId);
+        }
+        return content.get();
+    }
 }

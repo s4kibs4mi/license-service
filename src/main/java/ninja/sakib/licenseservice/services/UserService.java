@@ -14,4 +14,6 @@ public interface UserService {
     UserDto findUserById(String userId);
 
     UserDto updateUserRole(String userId, UserRole newRole);
+
+    boolean isLoggedUserAdmin();
 }
