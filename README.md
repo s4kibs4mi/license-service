@@ -16,6 +16,10 @@ The eligibility logic for content access can be determined by various criteria s
 or purchase history. To keep the implementation straightforward for this assignment, I have focused on role-based and
 purchase-based access control as the primary criteria for entitlement.
 
+- If user role is Admin, has access
+- If user purchased content, has access
+- Else no access
+
 ### Models
 
 - User
@@ -26,10 +30,43 @@ purchase-based access control as the primary criteria for entitlement.
 - Content
     - id: UUID
     - content: String
-- PurchaseHistory
+- Purchase
     - id: UUID
     - purchasedContents: [Content]
     - purchasedBy: User
+
+### Build & Run
+
+#### Requirements
+
+- Install docker & docker compose
+- Postman
+
+#### Run with dependency
+
+```shell
+make run_app
+```
+
+Note: app should be running on port **8082**. This port must be unassigned.
+
+#### Play with endpoints
+
+- Import postman collection and environment from `./resources` directory
+- Then execute requests
+- Make sure environment is set properly in postman
+- Expected flow is
+    - Register user
+    - Login with same user
+    - Create content
+    - Create Purchase (not required for Admin user)
+    - License check
+
+#### Run tests
+
+```shell
+make test
+```
 
 ### Docs
 
