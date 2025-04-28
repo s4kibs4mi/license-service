@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import ninja.sakib.licenseservice.services.dto.PurchaseDto;
 
 import java.time.Instant;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchased_by", nullable = false)
     private User purchasedBy;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -31,4 +32,11 @@ public class Purchase {
     private List<Content> purchasedContents;
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
+
+    public PurchaseDto toDto() {
+        return PurchaseDto
+                .builder()
+                .id(this.id)
+                .build();
+    }
 }

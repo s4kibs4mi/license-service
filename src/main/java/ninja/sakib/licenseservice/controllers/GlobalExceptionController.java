@@ -137,6 +137,23 @@ public class GlobalExceptionController {
                 );
     }
 
+    @ExceptionHandler(ContentsNotFoundException.class)
+    public ResponseEntity<ApiFailureResp> handleException(ContentsNotFoundException ex) {
+        Map<String, List<String>> errors = new HashMap<>();
+        for (String id : ex.getContentIds()) {
+            errors.put(id, List.of("not found"));
+        }
+
+        return ResponseEntity
+                .badRequest()
+                .body(ApiFailureResp
+                        .builder()
+                        .errorMessage("Invalid data")
+                        .errors(errors)
+                        .build()
+                );
+    }
+
     @ExceptionHandler({SQLException.class, DataAccessException.class, DataIntegrityViolationException.class})
     public ResponseEntity<ApiFailureResp> handleSqlException(Exception ex) {
         if (ex.getCause() instanceof ConstraintViolationException sqlException) {
